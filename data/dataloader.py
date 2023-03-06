@@ -1,11 +1,22 @@
 import os
 import pandas as pd
+import numpy as np
 
-s = 'https://archive.ics.uci.edu/ml/'\
-    'machine-learning-databases/iris/iris.data'
+class Dataloader:
 
-df = pd.read_csv(s,
+    def __init__(self) -> None:
+        self.s = 'data/dataset/iris.data'
+
+    def read_data(self):
+
+        df = pd.read_csv(self.s,
                  header=None,
                  encoding='utf-8')
+        
+        y = df.iloc[0:100, 4].values
+        y = np.where(y == 'Iris-setosa', 0, 1)
 
-df.tail()
+        X = df.iloc[0:100, [0,2]].values
+        
+        return X, y
+
