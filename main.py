@@ -1,5 +1,6 @@
 from data.dataloader import Dataloader
 from perceptron import Perceptron
+from ADALine import AdalineSGD
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 
@@ -21,13 +22,24 @@ dataload = Dataloader()
 
 X, y = dataload.read_data()
 
-ppn = Perceptron(eta=0.1, n_iter=10)
-ppn.fit(X, y)
+#---------------------Perceptron--------------------------#
 
-plt.plot(range(1, len(ppn.errors_)+1),
-         ppn.errors_, marker='o')
+# ppn = Perceptron(eta=0.1, n_iter=10)
+# ppn.fit(X, y)
 
-plt.xlabel('Epochs')
-plt.ylabel('Number of updates')
+# plt.plot(range(1, len(ppn.errors_)+1),
+#          ppn.errors_, marker='o')
+
+# plt.xlabel('Epochs')
+# plt.ylabel('Number of updates')
+# plt.show()
+
+#----------------Adaline-------------------------#
+fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(10,4))
+ada1 = AdalineSGD(n_iter=15, eta=0.1).fit(X,y)
+ax[0].plot(range(1, len(ada1.losses_)+1),
+           np.log10(ada1.losses_), marker='o')
+ax[0].set_xlabel('Epochs')
+ax[0].set_ylabel('log(Mean Squared Error)')
+ax[0].set_title('Adaline with leanring rate 0.1')
 plt.show()
-
