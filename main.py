@@ -2,6 +2,7 @@ from data.dataloader import Dataloader
 from perceptron import Perceptron
 from ADALine import AdalineSGD
 import matplotlib.pyplot as plt
+import numpy as np
 from matplotlib.colors import ListedColormap
 
 def plot_decision_regions(X, y, classifier, resolution=0.02):
@@ -36,10 +37,10 @@ X, y = dataload.read_data()
 
 #----------------Adaline-------------------------#
 fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(10,4))
-ada1 = AdalineSGD(n_iter=15, eta=0.1).fit(X,y)
+ada1 = AdalineSGD(n_iter=15, eta=0.005).fit(X,y)
 ax[0].plot(range(1, len(ada1.losses_)+1),
            np.log10(ada1.losses_), marker='o')
 ax[0].set_xlabel('Epochs')
 ax[0].set_ylabel('log(Mean Squared Error)')
-ax[0].set_title('Adaline with leanring rate 0.1')
+ax[0].set_title('Adaline with leanring rate 0.005')
 plt.show()

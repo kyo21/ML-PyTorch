@@ -1,3 +1,5 @@
+import numpy as np
+
 class AdalineSGD:
     def __init__(self, eta=0.01, n_iter=10, shuffle=True, random_state=None):
         self.eta = eta
@@ -36,7 +38,7 @@ class AdalineSGD:
         r = self.rgen.permutation(len(y))
         return X[r], y[r]
     
-    def _initialize_weights(self, m):
+    def _initialized_weights(self, m):
         self.rgen = np.random.RandomState(self.random_state)
         self.w_ = self.rgen.normal(loc=0.0, scale=0.01, size=m)
         self.b_ = np.float_(0.)
