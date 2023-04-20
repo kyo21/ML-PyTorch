@@ -1,6 +1,7 @@
 from data.dataloader import Dataloader
 from perceptron import Perceptron
 from ADALine import AdalineSGD
+from GNN import GNN
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.colors import ListedColormap
@@ -37,18 +38,24 @@ X_stad = dataload.standardization(X)
 # plt.show()
 
 #----------------Adaline-------------------------#
-fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(10,4))
-ada1 = AdalineSGD(n_iter=20, eta=0.005).fit(X,y)
-ax[0].plot(range(1, len(ada1.losses_)+1),
-           np.log10(ada1.losses_), marker='o')
-ax[0].set_xlabel('Epochs')
-ax[0].set_ylabel('log(Mean Squared Error)')
-ax[0].set_title('Adaline with leanring rate 0.005')
+# fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(10,4))
+# ada1 = AdalineSGD(n_iter=20, eta=0.005).fit(X,y)
+# ax[0].plot(range(1, len(ada1.losses_)+1),
+#            np.log10(ada1.losses_), marker='o')
+# ax[0].set_xlabel('Epochs')
+# ax[0].set_ylabel('log(Mean Squared Error)')
+# ax[0].set_title('Adaline with leanring rate 0.005')
 
-ada2 = AdalineSGD(n_iter=20, eta=0.005).fit(X_stad,y)
-ax[1].plot(range(1, len(ada2.losses_)+1),
-           np.log10(ada2.losses_), marker='o')
-ax[1].set_xlabel('Epochs')
-ax[1].set_ylabel('log(Mean Squared Error)')
-ax[1].set_title('Adaline with learning rate 0.005 and X_stad')
-plt.show()
+# ada2 = AdalineSGD(n_iter=20, eta=0.005).fit(X_stad,y)
+# ax[1].plot(range(1, len(ada2.losses_)+1),
+#            np.log10(ada2.losses_), marker='o')
+# ax[1].set_xlabel('Epochs')
+# ax[1].set_ylabel('log(Mean Squared Error)')
+# ax[1].set_title('Adaline with learning rate 0.005 and X_stad')
+# plt.show()
+
+#------------------ GNN ----------------------------------------#
+graphx = GNN()
+cols = ['#1f77b4', '#ff7f0e', '#2ca02c']
+A = graphx.build_adj_matrix(cols)
+print(A)  
