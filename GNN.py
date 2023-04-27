@@ -21,7 +21,17 @@ class GNN:
         
         A = np.asarray(nx.adjacency_matrix(G).todense())
 
-        return A
+        return G, A
+    
+    def build_graph_color_represent(self, G, map_dict):
+        oh_idx = np.array([map_dict[v] for v in
+                           nx.get_node_attributes(G, 'color').values()])
+        oh_encode = np.zeros((oh_idx.size, len(map_dict)))
+
+        oh_encode[
+            np.arange(oh_idx.size), oh_idx] = 1
+        
+        return oh_encode
         
 
         

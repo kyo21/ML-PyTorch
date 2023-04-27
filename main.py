@@ -57,5 +57,12 @@ X_stad = dataload.standardization(X)
 #------------------ GNN ----------------------------------------#
 graphx = GNN()
 cols = ['#1f77b4', '#ff7f0e', '#2ca02c']
-A = graphx.build_adj_matrix(cols)
+G, A = graphx.build_adj_matrix(cols)
 print(A)  
+
+X = graphx.build_graph_color_represent(G, {'#1f77b4':0, '#ff7f0e':1, '#2ca02c':2})
+print(X)
+# A = np.zeros((4,3))
+# B = np.array([0,1,2])
+# # A[np.arange(4),B] = 1
+# print(B)
