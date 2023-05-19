@@ -6,6 +6,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.colors import ListedColormap
 
+import itertools
+from itertools import combinations
+
 def plot_decision_regions(X, y, classifier, resolution=0.02):
     markers = ('o','s','^', 'v','<')
     colors = ('red', 'blue','lightgreen','gray','cyan')
@@ -55,14 +58,21 @@ X_stad = dataload.standardization(X)
 # plt.show()
 
 #------------------ GNN ----------------------------------------#
-graphx = GNN()
-cols = ['#1f77b4', '#ff7f0e', '#2ca02c']
-G, A = graphx.build_adj_matrix(cols)
-print(A)  
+# graphx = GNN()
+# blue, orange, green = '#1f77b4', '#ff7f0e', '#2ca02c'
+# cols = [blue, orange, green, green, orange]
+# G, A = graphx.build_adj_matrix(cols)
+# print(A)  
 
-X = graphx.build_graph_color_represent(G, {'#1f77b4':0, '#ff7f0e':1, '#2ca02c':2})
-print(X)
-# A = np.zeros((4,3))
-# B = np.array([0,1,2])
-# # A[np.arange(4),B] = 1
-# print(B)
+# X = graphx.build_graph_color_represent(G, {'#1f77b4':0, '#ff7f0e':1, '#2ca02c':2})
+# print(X)
+
+def tuple_int_str(tuple_str):
+    result = tuple((int(x[0]), int(x[1])) for x in tuple_str)
+    return result
+
+output = list(combinations('01234',2))
+
+print(tuple_int_str(output))
+
+
