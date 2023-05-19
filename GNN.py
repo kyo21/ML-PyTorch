@@ -14,7 +14,7 @@ class GNN:
             )
 
         for j in range(len(col)):
-            if j == 3:
+            if j == 4:
                 break
             else:
                 G.add_edges_from([(1,j+2)])
